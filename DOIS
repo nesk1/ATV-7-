@@ -1,0 +1,59 @@
+package atividade.vii;
+
+import java.util.Scanner;
+
+public class AtividadeVII {
+
+    public static void main(String[] args) {
+        Scanner cachoro = new Scanner(System.in);
+
+        // Fazendo as perguntas
+        boolean[] respostas = new boolean[5];
+        String[] perguntas = {
+            "Telefonou para a vítima?",
+            "Esteve no local do crime?",
+            "Mora perto da vítima?",
+            "Devia para a vítima?",
+            "Já trabalhou com a vítima?"
+        };
+
+        for (int i = 0; i < perguntas.length; i++) {
+            System.out.print(perguntas[i] + " (sim/nao): ");
+            String resposta = cachoro.nextLine().toLowerCase();
+            while (!resposta.equals("sim") && !resposta.equals("nao")) {
+                System.out.println("Por favor, responda com 'sim' para sim ou 'nao' para não.");
+                System.out.print(perguntas[i] + " (sim/nao): ");
+                resposta = cachoro.nextLine().toLowerCase();
+            }
+            respostas[i] = resposta.equals("sim");
+        }
+
+        // Classificando a participação
+        int quantidadeRespostasPositivas = 0;
+        for (boolean resposta : respostas) {
+            if (resposta) {
+                quantidadeRespostasPositivas++;
+            }
+        }
+
+        String classificacao;
+        switch (quantidadeRespostasPositivas) {
+            case 2:
+                classificacao = "Suspeita";
+                break;
+            case 3:
+            case 4:
+                classificacao = "Cúmplice";
+                break;
+            case 5:
+                classificacao = "Assassino";
+                break;
+            default:
+                classificacao = "Inocente";
+                break;
+        }
+
+        System.out.println("Classificação da participação no crime: " + classificacao);
+
+    }
+}
