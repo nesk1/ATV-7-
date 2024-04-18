@@ -1,0 +1,52 @@
+package atividade.vii;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class AtividadeVII {
+
+    public static double mediaAnual(ArrayList<Double> temperaturas) {
+        double soma = 0;
+        for (double temperatura : temperaturas) {
+            soma += temperatura;
+        }
+        return soma / temperaturas.size();
+    }
+
+    public static ArrayList<Integer> mesesAcimaMedia(ArrayList<Double> temperaturas, double mediaAnual) {
+        ArrayList<Integer> mesesAcima = new ArrayList<>();
+        for (int i = 0; i < temperaturas.size(); i++) {
+            if (temperaturas.get(i) > mediaAnual) {
+                mesesAcima.add(i + 1);
+            }
+        }
+        return mesesAcima;
+    }
+
+    public static void main(String[] args) {
+        String[] meses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+        ArrayList<Double> temperaturas = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        for (String mes : meses) {
+            System.out.print("Digite a temperatura média de " + mes + ": ");
+            double temperatura = scanner.nextDouble();
+            temperaturas.add(temperatura);
+        }
+
+        double mediaAnual = mediaAnual(temperaturas);
+        System.out.println("A média anual das temperaturas é: " + String.format("%.2f", mediaAnual) + "°C");
+
+        ArrayList<Integer> acimaDaMedia = mesesAcimaMedia(temperaturas, mediaAnual);
+        if (!acimaDaMedia.isEmpty()) {
+            System.out.println("Temperaturas acima da média anual:");
+            for (int mes : acimaDaMedia) {
+                System.out.println(mes + " - " + meses[mes - 1]);
+            }
+        } else {
+            System.out.println("Não há temperaturas acima da média anual.");
+        }
+
+    }
+
+}
