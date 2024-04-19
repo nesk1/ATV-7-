@@ -1,0 +1,45 @@
+package atividade.vii;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class AtividadeVII {
+
+    public static void main(String[] args) {
+        Scanner cansado = new Scanner(System.in);
+        ArrayList<Double> vendasBrutas = new ArrayList<>();
+
+        // Lendo as vendas brutas dos vendedores
+        System.out.println("Digite as vendas brutas de todos os vendedores (-1 para encerrar o programa): ");
+        double vendaB = cansado.nextDouble();
+        while (vendaB != -1) {
+            vendasBrutas.add(vendaB);
+            vendaB = cansado.nextDouble();
+        }
+
+        // Contadores para os intervalos de salários
+        int[] contadores = new int[9]; // 9 intervalos
+
+        // Calculando os salários e contando os vendedores em cada intervalo
+        for (double venda : vendasBrutas) {
+            double salario = 200 + (0.09 * venda);
+            if (salario >= 200 && salario < 1000) {
+                contadores[(int) ((salario - 200) / 100)]++;
+            } else if (salario >= 1000) {
+                contadores[8]++;
+            }
+        }
+
+        // Exibindo os resultados
+        for (int i = 0; i < contadores.length; i++) {
+            int inicioIntervalo = 200 + (i * 100);
+            int fimIntervalo = 299 + (i * 100);
+            if (i == contadores.length - 1) {
+                System.out.println("$" + inicioIntervalo + " em diante: " + contadores[i] + " vendedores");
+            } else {
+                System.out.println("$" + inicioIntervalo + " - $" + fimIntervalo + ": " + contadores[i] + " vendedores");
+            }
+        }
+
+    }
+}
