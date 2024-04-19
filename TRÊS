@@ -1,0 +1,69 @@
+package atividade.vii;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class AtividadeVII {
+
+    public static void main(String[] args) {
+        Scanner robertin = new Scanner(System.in);
+        ArrayList<Double> notas = new ArrayList<>();
+
+        System.out.println("Digite as notas (digite -1 para encerrar): ");
+
+        // Lendo as notas até receber -1
+        double nota = robertin.nextDouble();
+        while (nota != -1) {
+            notas.add(nota);
+            nota = robertin.nextDouble();
+        }
+
+        // Quantidade de valores lidos
+        System.out.println("Quantidade de valores: " + notas.size());
+
+        // Exibindo os valores na ordem em que foram informados
+        System.out.println("Valores na ordem informada:");
+        for (double n : notas) {
+            System.out.print(n + " ");
+        }
+        System.out.println();
+
+        // Exibindo os valores na ordem inversa
+        System.out.println("Valores na ordem inversa:");
+        for (int i = notas.size() - 1; i >= 0; i--) {
+            System.out.println(notas.get(i));
+        }
+
+        // Calculando a soma dos valores
+        double soma = 0;
+        for (double n : notas) {
+            soma += n;
+        }
+        System.out.println("Soma dos valores: " + soma);
+
+        // Calculando a média dos valores
+        double media = soma / notas.size();
+        System.out.println("Média dos valores: " + media);
+
+        // Contando a quantidade de valores acima da média
+        int acimaDaMedia = 0;
+        for (double n : notas) {
+            if (n > media) {
+                acimaDaMedia++;
+            }
+        }
+        System.out.println("Quantidade de valores acima da média: " + acimaDaMedia);
+
+        // Contando a quantidade de valores abaixo de sete
+        int abaixoDeSete = 0;
+        for (double n : notas) {
+            if (n < 7) {
+                abaixoDeSete++;
+            }
+        }
+        System.out.println("Quantidade de valores abaixo de sete: " + abaixoDeSete);
+
+        // Encerrando o programa
+        System.out.println("ENCERRANDO");
+    }
+}
